@@ -124,6 +124,7 @@ void inserirElemento()
 	cout << "Digite o elemento: ";
 	cin >> novo->valor;
 	novo->prox = NULL;
+	
 
 	if (primeiro == NULL)
 	{
@@ -132,11 +133,22 @@ void inserirElemento()
 	else
 	{
 		// procura o final da lista
-		NO* aux = primeiro;
-		while (aux->prox != NULL) {
-			aux = aux->prox;
+		NO* atual = primeiro;
+		NO* anterior = NULL;
+
+		while (atual != NULL && atual->valor < novo->valor) {
+			anterior = atual;
+			atual = atual->prox;
 		}
-		aux->prox = novo;
+
+		if (atual != NULL && atual->valor == novo->valor) {
+			cout << "Numero repetido" << endl;
+		}
+		else {
+			anterior->prox = novo;
+			novo->prox = atual;
+		}
+		
 	}
 }
 
