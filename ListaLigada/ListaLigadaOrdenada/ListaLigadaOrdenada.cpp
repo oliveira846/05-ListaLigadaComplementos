@@ -161,14 +161,56 @@ void inserirElemento()
 
 void excluirElemento()
 {
+	int numeroExcluido;
 
+	cout << "Digite o numero a ser excluido: ";
+	cin >> numeroExcluido;
+
+	NO* anterior = NULL;
+	NO* atual = primeiro;
+
+	while (atual != NULL && atual->valor < numeroExcluido) {
+		anterior = atual;
+		atual = atual->prox;
+	}
+
+	if (atual == NULL || atual->valor > numeroExcluido) {
+		cout << "Numero nao encontrado";
+		return;
+	}
+
+	if (anterior == NULL) {
+		primeiro = atual->prox;
+	}
+	else {
+		anterior->prox = atual->prox;
+		
+	}
+	free(atual);
+	
 }
 
 void buscarElemento()
 {
-	
+	int numeroBuscado;
 
+	cout << "Digite um numero a ser buscado: ";
+	cin >> numeroBuscado;
 
+	NO* aux = primeiro;
+
+	while (aux != NULL) {
+		if (aux->valor == numeroBuscado) {
+			cout << "Numero encontrado" << endl;
+			return;
+		}
+		else if (aux->valor > numeroBuscado) {
+			cout << "Numero nao encontrado" << endl;
+			return;
+		}
+		aux = aux->prox;
+	}
+	cout << "Numero nao encontrado" << endl;
 }
 
 
