@@ -143,10 +143,17 @@ void inserirElemento()
 
 		if (atual != NULL && atual->valor == novo->valor) {
 			cout << "Numero repetido" << endl;
+			free(novo);
 		}
 		else {
-			anterior->prox = novo;
-			novo->prox = atual;
+			if (anterior == NULL) {
+				novo->prox = primeiro;
+				primeiro = novo;
+			}
+			else {
+				anterior->prox = novo;
+				novo->prox = atual;
+			}
 		}
 		
 	}
@@ -159,6 +166,8 @@ void excluirElemento()
 
 void buscarElemento()
 {
+	
+
 
 }
 
